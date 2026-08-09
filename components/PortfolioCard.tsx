@@ -1,10 +1,45 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import dynamic from 'next/dynamic'
 import { IconWhatsApp } from '@/components/icons'
 import { useLanguage } from '@/context/LanguageContext'
 import type { ShowcaseProject } from '@/types'
+
+// ── Lazy Video: only loads + plays when scrolled into view (mobile performance) ──
+function LazyVideo({ src, className }: { src: string; className?: string }) {
+  const ref = useRef<HTMLVideoElement>(null)
+  const [inView, setInView] = useState(false)
+
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setInView(true)
+          observer.disconnect()
+        }
+      },
+      { threshold: 0.25 }
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [])
+
+  return (
+    <video
+      ref={ref}
+      src={inView ? src : undefined}
+      autoPlay={inView}
+      muted
+      loop
+      playsInline
+      preload="none"
+      className={className}
+    />
+  )
+}
 
 // Lazy-load the modal so it doesn't block initial page paint
 const ProjectModal = dynamic(() => import('@/components/ProjectModal'), { ssr: false })
@@ -37,8 +72,8 @@ const PROJECTS: ShowcaseProject[] = [
     category: 'SHOPIFY',
     client: 'Jumex (Marca Internacional de Bebidas)',
     year: '2024',
-    desc: 'Desarrollo a medida sobre Shopify Liquid para la icónica marca internacional de jugos y bebidas Jumex. Programación desde cero de arquitectura de módulos dinámicos, navegación avanzada con MegaMenu multinivel, sliders interactivos de catálogo por categorías y maquetación responsiva de alta conversión.',
-    descEn: 'Bespoke Shopify Liquid development for iconic international beverage brand Jumex. Engineered custom dynamic module architecture from scratch, featuring multi-level MegaMenu navigation, interactive catalog sliders by category, and high-converting responsive layouts.',
+    desc: 'Desarrollo a medida sobre Shopify Liquid para la icónica marca internacional de jugos y bebidas Jumex. Este proyecto fue realizado en conjunto con un gran equipo de trabajo, el cual me dio la oportunidad de poner a prueba mis conocimientos en Shopify — programando desde cero la arquitectura de módulos dinámicos, navegación avanzada con MegaMenu multinivel, sliders interactivos de catálogo por categorías y maquetación responsiva de alta conversión.',
+    descEn: 'Bespoke Shopify Liquid development for iconic international beverage brand Jumex. This project was carried out alongside a great team, which gave me the opportunity to put my Shopify expertise to the test — engineering custom dynamic module architecture from scratch, multi-level MegaMenu navigation, interactive catalog sliders, and high-converting responsive layouts.',
     stack: ['Shopify', 'Liquid Custom Engine', 'JavaScript ES6', 'CSS3 Modules', 'MegaMenu'],
     metric: '🚀 Arquitectura Liquid 100% Personalizada',
     metricEn: '🚀 100% Bespoke Liquid Engine Architecture',
@@ -88,8 +123,8 @@ const PROJECTS: ShowcaseProject[] = [
     category: 'SHOPIFY',
     client: 'Odwalla (Marca de Jugos & Bebidas)',
     year: '2024',
-    desc: 'Desarrollo y personalización avanzada sobre Shopify para la marca Odwalla. Modificación profunda en Liquid de múltiples plantillas de tema preexistente, extendiendo sus capacidades nativas para implementar la arquitectura de diseño, componentes dinámicos y flujos que la marca requería.',
-    descEn: 'Advanced modification and customization of purchased Shopify theme templates for Odwalla. Developed custom Liquid sections, interactive product pickers, and dynamic UI modules tailored to exact business requirements.',
+    desc: 'Desarrollo y personalización avanzada sobre Shopify para la marca Odwalla. Este proyecto fue realizado en conjunto con un gran equipo de trabajo, el cual me dio la oportunidad de poner a prueba mis conocimientos en Shopify — realizando la modificación profunda en Liquid de múltiples plantillas de tema preexistente, extendiendo sus capacidades nativas para implementar la arquitectura de diseño, componentes dinámicos y flujos que la marca requería.',
+    descEn: 'Advanced modification and customization of purchased Shopify theme templates for Odwalla. This project was carried out alongside a great team, which gave me the opportunity to apply my Shopify skills — developing custom Liquid sections, interactive product pickers, and dynamic UI modules tailored to exact business requirements.',
     stack: ['Shopify', 'Liquid Customization', 'JavaScript ES6', 'Theme Custom Layouts', 'CSS Modules'],
     metric: '🛠️ Modificación & Adaptación Liquid de Tema',
     metricEn: '🛠️ Bespoke Shopify Theme Modification',
@@ -274,12 +309,8 @@ export default function PortfolioCard() {
                   {(item.image || item.video) && (
                     <div className="portfolio-thumb">
                       {item.video ? (
-                        <video
+                        <LazyVideo
                           src={item.video}
-                          autoPlay
-                          muted
-                          loop
-                          playsInline
                           className="portfolio-thumb__img"
                         />
                       ) : (
