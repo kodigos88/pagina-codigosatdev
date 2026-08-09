@@ -1,36 +1,81 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🕹️ codigosatdev — Portfolio v1.0.0 (HyperCard 1-Bit Neo-Brutalist)
 
-## Getting Started
+Sitio web oficial y portafolio interactivo de **Agustín (codigosatdev)** — Full Stack Developer especializado en **WordPress, Headless WP & Next.js, Shopify, Plugins a medida, Animaciones GSAP y Desarrollo de Aplicaciones Móviles / SaaS**.
 
-First, run the development server:
+---
 
+## 🚀 Vista General y Arquitectura
+
+El sitio está construido bajo una arquitectura **100% Next.js 16 (App Router + Turbopack)** independiente, desacoplada de CMSs tradicionales para garantizar tiempos de carga ultra rápidos (<0.5s), SEO nativo de alto rendimiento y máxima resiliencia ante ataques.
+
+### 🛠️ Stack Tecnológico Principal
+
+- **Core Framework**: [Next.js 16](https://nextjs.org/) (App Router & Server-Side Optimization)
+- **Lenguaje**: [TypeScript](https://www.typescriptlang.org/) (Tipado estricto & OWASP A03 Input Sanitization)
+- **Estilos**: **Vanilla CSS3 Puro** con Sistema de Variables de Diseño 1-Bit Neo-Brutalista (HyperCard Aesthetic)
+- **Tipografía Nativa**: Google Fonts (`Silkscreen`, `Inter`, `Courier Prime`) optimizadas mediante `next/font` (0 FOUT)
+- **Seguridad Formulario**: Integración con **Google reCAPTCHA v2** para prevención de spam en terminal de contacto
+- **Internacionalización (i18n)**: Sistema Bilingüe Completo (`ES` / `EN`) gestionado vía `LanguageContext` reactivo
+- **Video & Medios**: Modal Interactivo HD 1080p con opción de pantalla completa para casos de estudio con GSAP
+
+---
+
+## 🤖 Desarrollo Pair-Programming con IA (Antigravity AI & Impeccable Design)
+
+Este portafolio fue concebido, diseñado y maquetado utilizando técnicas avanzadas de **Ingeniería con Inteligencia Artificial**:
+
+- **Agente de IA**: Pair-programming conducido con el agente agentico **Antigravity AI (Google DeepMind)**.
+- **Filosofía de Diseño**: Basado en los principios **Impeccable Design**, combinando estética retro 1-bit HyperCard/Macintosh de los 80s con patrones modernos de experiencia de usuario (UI/UX).
+- **Control de Calidad**: Validación continua de tipos con TypeScript, accesibilidad WCAG, compresión de assets de video/imagen y resiliencia responsiva con tipografía fluida `clamp()`.
+
+---
+
+## 💼 Proyectos Destacados (9 Casos de Éxito)
+
+1. **ESB Puerto Rico** — E-Commerce industrial con plugin PHP a medida para filtrado de +500 SKUs de baterías automotrices.
+2. **Jumex** — Tienda Shopify E-Commerce desarrollada en Liquid Custom Engine con MegaMenu multinivel.
+3. **Logísticas Flash** — Experiencia web interactiva con animaciones avanzadas GSAP (GreenSock) a 60fps.
+4. **AWD Media** — Sitio corporativo para agencia creativa con timelines interactivos en GSAP ScrollTrigger.
+5. **Odwalla** — Modificación y desarrollo a medida sobre plantillas Liquid de Shopify.
+6. **Biwott** — Migración 1:1 de maquetador Divi a Elementor PRO con MegaMenu personalizado.
+7. **HomePro Naples** — Tema WordPress personalizado desarrollado desde cero con animaciones de scroll.
+8. **MLH Insurance** — Consultoría de identidad digital y maquetación web corporativa desde hoja en blanco.
+9. **Pro Elite Cleaning** — Ecosistema web corporativo, Dashboard SaaS en Node.js/Next.js y App Móvil en App Store (iOS) y Google Play (Android).
+
+---
+
+## ⚙️ Configuración e Instalación Local
+
+### 1. Clonar el repositorio
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/kodigos88/pagina-codigosatdev.git
+cd pagina-codigosatdev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Instalar dependencias
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 3. Configurar variables de entorno
+Crea un archivo `.env.local` basado en `.env.example`:
+```ini
+NEXT_PUBLIC_WA_NUMBER=584245422849
+NEXT_PUBLIC_CONTACT_EMAIL=kodigosat@gmail.com
+NEXT_PUBLIC_RECAPTCHA_SITE_KEY=tu_clave_de_sitio_recaptcha
+RECAPTCHA_SECRET_KEY=tu_clave_secreta_recaptcha
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 4. Iniciar servidor de desarrollo
+```bash
+npm run dev
+```
+Abre [http://localhost:3000](http://localhost:3000) en tu navegador.
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 📩 Contacto Directo
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **WhatsApp**: [+58 424 5422849](https://wa.me/584245422849)
+- **Email**: [kodigosat@gmail.com](mailto:kodigosat@gmail.com)
+- **Sitio Web**: [codigosatdev.com](https://codigosatdev.com)
