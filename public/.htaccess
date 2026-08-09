@@ -10,10 +10,21 @@
   RewriteCond %{HTTPS} off
   RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
+  # Allow access to _next directory (critical for Next.js static export on Apache/cPanel)
+  RewriteCond %{REQUEST_URI} ^/_next/ [NC]
+  RewriteRule ^ - [L]
+
   # Clean URLs — serve .html extension if available
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteCond %{REQUEST_FILENAME}\.html -f
   RewriteRule ^(.*)$ $1.html [L]
+</IfModule>
+
+# MIME Types for Next.js Assets
+<IfModule mod_mime.c>
+  AddType text/css .css
+  AddType application/javascript .js
+  AddType image/svg+xml .svg
 </IfModule>
 
 # Security Headers (OWASP Compliant)
