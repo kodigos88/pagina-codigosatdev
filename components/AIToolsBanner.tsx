@@ -187,7 +187,7 @@ export default function AIToolsCard() {
             {isEn ? '// AI_STACK' : '// AI_STACK'}
           </div>
           <h2 className="ait-title retro-glitch">
-            {isEn ? 'Potenciado con IA' : 'Potenciado con IA'}
+            {isEn ? 'AI-Powered Development' : 'Potenciado con IA'}
           </h2>
           <p className="ait-subtitle">
             {isEn
