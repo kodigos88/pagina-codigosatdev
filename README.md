@@ -1,6 +1,6 @@
 # 🕹️ codigosatdev — Portfolio v1.0.0 (HyperCard 1-Bit Neo-Brutalist)
 
-Sitio web oficial y portafolio interactivo de **Agustín (codigosatdev)** — Full Stack Developer especializado en **WordPress, Headless WP & Next.js, Shopify, Plugins a medida, Animaciones GSAP y Desarrollo de Aplicaciones Móviles / SaaS**.
+Sitio web oficial y portafolio interactivo de **Arturo Tovar (codigosatdev)** — Full Stack Developer especializado en **WordPress, Headless WP & Next.js, Shopify, Plugins a medida, Animaciones GSAP y Desarrollo de Aplicaciones Móviles / SaaS**.
 
 ---
 
