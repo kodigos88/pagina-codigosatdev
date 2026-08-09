@@ -52,12 +52,16 @@ const securityHeaders = [
 ]
 
 const nextConfig: NextConfig = {
-  output: 'export',
   reactStrictMode: true,
 
-  // Images — unoptimized mode for static export (serves direct from public/)
-  images: {
-    unoptimized: true,
+  // Security headers applied on every response
+  async headers() {
+    return [
+      {
+        source: '/(.*)',
+        headers: securityHeaders,
+      },
+    ]
   },
 }
 
