@@ -53,6 +53,7 @@ const securityHeaders = [
 
 const nextConfig: NextConfig = {
   output: 'export',
+  assetPrefix: './',
   reactStrictMode: true,
 
   // Images — unoptimized mode for static export (serves direct from public/)
