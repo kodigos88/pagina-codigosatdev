@@ -44,36 +44,6 @@ Este portafolio fue concebido, diseñado y maquetado utilizando técnicas avanza
 
 ---
 
-## ⚙️ Configuración e Instalación Local
-
-### 1. Clonar el repositorio
-```bash
-git clone https://github.com/kodigos88/pagina-codigosatdev.git
-cd pagina-codigosatdev
-```
-
-### 2. Instalar dependencias
-```bash
-npm install
-```
-
-### 3. Configurar variables de entorno
-Crea un archivo `.env.local` basado en `.env.example`:
-```ini
-NEXT_PUBLIC_WA_NUMBER=584245422849
-NEXT_PUBLIC_CONTACT_EMAIL=kodigosat@gmail.com
-NEXT_PUBLIC_RECAPTCHA_SITE_KEY=tu_clave_de_sitio_recaptcha
-RECAPTCHA_SECRET_KEY=tu_clave_secreta_recaptcha
-```
-
-### 4. Iniciar servidor de desarrollo
-```bash
-npm run dev
-```
-Abre [http://localhost:3000](http://localhost:3000) en tu navegador.
-
----
-
 ## 📩 Contacto Directo
 
 - **WhatsApp**: [+58 424 5422849](https://wa.me/584245422849)
