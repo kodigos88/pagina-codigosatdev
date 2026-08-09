@@ -217,7 +217,7 @@ export const translations: Record<Language, TranslationSchema> = {
       emailLabel: 'EMAIL',
       callLabel: 'LLAMADA',
       callVal: 'Agendar consulta →',
-      copyright: 'Full Stack Developer · WordPress · Next.js · Shopify · Cloudflare',
+      copyright: 'Full Stack Developer · WordPress · Next.js · Shopify · AI-Powered Development',
     },
   },
   en: {
@@ -294,7 +294,7 @@ export const translations: Record<Language, TranslationSchema> = {
     stack: {
       tag: '03 — TECHNICAL STACK',
       title: 'Production Tools',
-      cardNum: 'CARD {num} // 03',
+      cardNum: 'CARD {num} // 04',
       clusters: [
         {
           label: 'FRONTEND',
@@ -364,7 +364,7 @@ export const translations: Record<Language, TranslationSchema> = {
       emailLabel: 'EMAIL',
       callLabel: 'CALL',
       callVal: 'Schedule Call →',
-      copyright: 'Full Stack Developer · WordPress · Next.js · Shopify · Cloudflare',
+      copyright: 'Full Stack Developer · WordPress · Next.js · Shopify · AI-Powered Development',
     },
   },
 }

@@ -377,6 +377,145 @@
 }
 
 /* ============================================================
+   AI Tools Banner — Retro Marquee Strip
+   ============================================================ */
+
+.ai-banner {
+  display: flex;
+  align-items: stretch;
+  background: var(--c-black);
+  color: var(--c-white);
+  border-top: var(--bdr-normal);
+  border-bottom: var(--bdr-normal);
+  overflow: hidden;
+  position: relative;
+  height: 56px;
+  /* Subtle CRT scan-line texture */
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(255, 255, 255, 0.025) 2px,
+    rgba(255, 255, 255, 0.025) 3px
+  );
+}
+
+/* Static left label */
+.ai-banner__label {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: 0 var(--sp-5);
+  border-right: var(--bdr-normal);
+  border-right-color: rgba(255, 255, 255, 0.25);
+  flex-shrink: 0;
+  background: var(--c-black);
+  z-index: 2;
+  white-space: nowrap;
+}
+
+.ai-banner__label-tag {
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: #00e5a0;
+  background: rgba(0, 229, 160, 0.1);
+  padding: 3px 8px;
+  border: 1px solid #00e5a0;
+}
+
+.ai-banner__label-arrow {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.45);
+  animation: ai-blink 1.2s step-end infinite;
+}
+
+@keyframes ai-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Scrolling track wrapper — clips overflow */
+.ai-banner__track-wrap {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  /* Fade edges */
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 4%,
+    black 96%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 4%,
+    black 96%,
+    transparent 100%
+  );
+}
+
+/* The moving row — duplicated for seamless loop */
+.ai-banner__track {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  white-space: nowrap;
+  animation: ai-marquee 28s linear infinite;
+  will-change: transform;
+}
+
+.ai-banner__track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes ai-marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.ai-banner__item {
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Each tool chip */
+.ai-banner__chip {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--sp-2);
+  padding: 0 var(--sp-5);
+}
+
+.ai-banner__chip-label {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--c-white);
+}
+
+.ai-banner__chip-sub {
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.08em;
+  color: #00e5a0;
+  opacity: 0.8;
+}
+
+/* Dot separator */
+.ai-banner__sep {
+  font-size: 0.35rem;
+  color: rgba(255, 255, 255, 0.3);
+  padding-right: var(--sp-5);
+}
+
+/* ============================================================
    Responsive Breakpoints
    ============================================================ */
 @media (max-width: 768px) {
@@ -1702,4 +1841,417 @@
 .hero-section--dithered .peeker-3 {
   background: #101010;
   border-color: #222;
+}
+
+/* ============================================================
+   AI Tools Banner — Retro Marquee Strip
+   ============================================================ */
+
+.ai-banner {
+  display: flex;
+  align-items: stretch;
+  background: var(--c-black);
+  color: var(--c-white);
+  border-top: var(--bdr-normal);
+  border-bottom: var(--bdr-normal);
+  overflow: hidden;
+  position: relative;
+  height: 56px;
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(255, 255, 255, 0.025) 2px,
+    rgba(255, 255, 255, 0.025) 3px
+  );
+}
+
+/* Static left label */
+.ai-banner__label {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: 0 var(--sp-5);
+  border-right: 1px solid rgba(255, 255, 255, 0.25);
+  flex-shrink: 0;
+  background: var(--c-black);
+  z-index: 2;
+  white-space: nowrap;
+}
+
+.ai-banner__label-tag {
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: #00e5a0;
+  background: rgba(0, 229, 160, 0.1);
+  padding: 3px 8px;
+  border: 1px solid #00e5a0;
+}
+
+.ai-banner__label-arrow {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.45);
+  animation: ai-blink 1.2s step-end infinite;
+}
+
+@keyframes ai-blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+/* Scrolling track wrapper */
+.ai-banner__track-wrap {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 4%,
+    black 96%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 4%,
+    black 96%,
+    transparent 100%
+  );
+}
+
+/* The moving row — duplicated content for seamless loop */
+.ai-banner__track {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  animation: ai-marquee 28s linear infinite;
+  will-change: transform;
+}
+
+.ai-banner__track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes ai-marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.ai-banner__item {
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Each tool chip */
+.ai-banner__chip {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--sp-2);
+  padding: 0 var(--sp-5);
+}
+
+.ai-banner__chip-label {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #ffffff;
+}
+
+.ai-banner__chip-sub {
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.08em;
+  color: #00e5a0;
+  opacity: 0.8;
+}
+
+/* Diamond separator */
+.ai-banner__sep {
+  font-size: 0.35rem;
+  color: rgba(255, 255, 255, 0.3);
+  padding-right: var(--sp-4);
+}
+
+/* Mobile: hide the label text on very small screens */
+@media (max-width: 480px) {
+  .ai-banner__label-tag {
+    display: none;
+  }
+}
+
+/* ============================================================
+   AI Tools Section — HyperCard Responsive Flex Layout & Theme
+   ============================================================ */
+
+.ait-section {
+  background: var(--c-white);
+  color: var(--c-black);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding-top: calc(var(--nav-h) + 32px);
+  padding-bottom: var(--sp-12);
+  position: relative;
+  overflow-y: auto;
+  min-height: 100vh;
+}
+
+.ait-inner {
+  max-width: 1100px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  flex: 1;
+  gap: var(--sp-6);
+}
+
+/* ── Header ───────────────────────────────────────────────── */
+.ait-header {
+  text-align: center;
+  max-width: 680px;
+  flex-shrink: 0;
+  width: 100%;
+}
+
+.ait-header .section-tag {
+  color: #00c896;
+  border-color: #00c896;
+  background: rgba(0, 200, 150, 0.08);
+}
+
+.ait-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 5vw, 3rem);
+  letter-spacing: var(--tracking-tight);
+  color: var(--c-black);
+  margin-top: var(--sp-3);
+  margin-bottom: var(--sp-2);
+}
+
+.ait-subtitle {
+  font-family: var(--font-mono);
+  font-size: clamp(0.75rem, 1.8vw, 0.875rem);
+  color: var(--c-gray-600);
+  letter-spacing: 0.03em;
+  line-height: 1.6;
+}
+
+/* ── Featured card wrapper ────────────────────────────────── */
+.ait-featured-wrap {
+  width: 100%;
+  max-width: 780px;
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.ait-featured {
+  background: var(--c-white);
+  color: var(--c-black);
+  border: var(--bdr-normal);
+  box-shadow: 6px 6px 0 #00c896;
+  padding: var(--sp-8) var(--sp-8);
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  min-height: 240px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* ── Timer bar ────────────────────────────────────────────── */
+.ait-bar-track {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--c-gray-200);
+}
+
+.ait-bar-fill {
+  height: 100%;
+  width: 100%;
+  background: #00c896;
+  transform-origin: left center;
+  transform: scaleX(0);
+}
+
+/* ── Featured content ─────────────────────────────────────── */
+.ait-feat-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.ait-feat-top {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  margin-bottom: var(--sp-2);
+}
+
+.ait-feat-badge {
+  font-family: var(--font-mono);
+  font-size: 1.5rem;
+  color: #00c896;
+  letter-spacing: 0.05em;
+}
+
+.ait-feat-cat {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.15em;
+  color: var(--c-gray-600);
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.ait-feat-name {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  letter-spacing: var(--tracking-tight);
+  color: var(--c-black);
+  margin-bottom: var(--sp-3);
+}
+
+.ait-feat-desc {
+  font-family: var(--font-mono);
+  font-size: clamp(0.8125rem, 1.8vw, 0.9375rem);
+  line-height: 1.65;
+  color: var(--c-black);
+  max-width: 640px;
+}
+
+/* ── Dots counter ─────────────────────────────────────────── */
+.ait-feat-counter {
+  display: flex;
+  gap: var(--sp-2);
+  padding-top: var(--sp-4);
+  border-top: 1px dashed var(--c-gray-200);
+  margin-top: var(--sp-4);
+}
+
+.ait-dot {
+  width: 10px;
+  height: 10px;
+  border: 1px solid var(--c-black);
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.ait-dot:hover {
+  border-color: #00c896;
+}
+
+.ait-dot--active {
+  background: #00c896;
+  border-color: #00c896;
+}
+
+/* ── Thumbnails Row ────────────────────────────────────────── */
+.ait-thumbs-row {
+  display: flex;
+  gap: var(--sp-3);
+  width: 100%;
+  max-width: 1100px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: auto;
+  z-index: 2;
+}
+
+.ait-thumb {
+  background: var(--c-white);
+  color: var(--c-black);
+  border: var(--bdr-normal);
+  box-shadow: 4px 4px 0 var(--c-gray-200);
+  padding: var(--sp-3) var(--sp-4);
+  flex: 1;
+  min-width: 140px;
+  max-width: 170px;
+  height: 110px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  text-align: left;
+}
+
+.ait-thumb:hover {
+  transform: translateY(-3px);
+  border-color: #00c896;
+  box-shadow: 4px 4px 0 #00c896;
+}
+
+.ait-thumb--active {
+  border-color: #00c896 !important;
+  box-shadow: 4px 4px 0 #00c896 !important;
+  background: var(--c-white);
+  transform: translateY(-4px);
+}
+
+.ait-thumb-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ait-thumb-badge {
+  font-family: var(--font-mono);
+  font-size: 1.125rem;
+  color: #00c896;
+}
+
+.ait-thumb-live-tag {
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  font-weight: 700;
+  background: #00c896;
+  color: #ffffff;
+  padding: 1px 4px;
+  letter-spacing: 0.05em;
+}
+
+.ait-thumb-name {
+  font-family: var(--font-display);
+  font-size: 0.8125rem;
+  letter-spacing: 0.05em;
+  color: var(--c-black);
+  display: block;
+}
+
+.ait-thumb-cat {
+  font-family: var(--font-mono);
+  font-size: 0.5625rem;
+  letter-spacing: 0.1em;
+  color: var(--c-gray-600);
+  display: block;
+}
+
+/* Responsive fixes for small screens */
+@media (max-width: 768px) {
+  .ait-thumb {
+    min-width: 120px;
+    height: 95px;
+    padding: var(--sp-2) var(--sp-3);
+  }
+  .ait-featured {
+    padding: var(--sp-6) var(--sp-5);
+  }
 }

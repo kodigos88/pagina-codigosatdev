@@ -26,8 +26,21 @@ export default function WelcomeModal({ onSetUserName }: WelcomeModalProps) {
     }
   }, []) // empty dep array — runs exactly once on mount
 
+  const playCoinSound = () => {
+    try {
+      const audio = new Audio('/sounds/8bit.wav')
+      audio.volume = 0.6
+      audio.play().catch(() => {
+        // Handle autoplay policy restriction if user interaction hasn't satisfied browser requirements
+      })
+    } catch {
+      // Audio playback fallback
+    }
+  }
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
+    playCoinSound()
     const trimmed = nameInput.trim()
     if (trimmed) {
       sessionStorage.setItem('kodigosat_session_name', trimmed)
@@ -37,8 +50,10 @@ export default function WelcomeModal({ onSetUserName }: WelcomeModalProps) {
   }
 
   const handleSkip = () => {
+    playCoinSound()
     setIsOpen(false)
   }
+
 
   if (!mounted || !isOpen) return null
 
