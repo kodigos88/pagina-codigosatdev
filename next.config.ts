@@ -52,21 +52,12 @@ const securityHeaders = [
 ]
 
 const nextConfig: NextConfig = {
+  output: 'export',
   reactStrictMode: true,
 
-  // Images — all served from /public (self-hosted, no external CDN needed)
+  // Images — unoptimized mode for static export (serves direct from public/)
   images: {
-    remotePatterns: [],
-  },
-
-  // Attach security headers to every route
-  async headers() {
-    return [
-      {
-        source: '/(.*)',   // matches every page and API route
-        headers: securityHeaders,
-      },
-    ]
+    unoptimized: true,
   },
 }
 
