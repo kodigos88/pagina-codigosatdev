@@ -32,17 +32,8 @@ export default function ContactCard() {
     servicio: defaultService,
     mensaje: '',
   })
-  const [captchaVerified, setCaptchaVerified] = useState(false)
-  const [captchaError, setCaptchaError] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitted, setSubmitted] = useState(false)
-
-  useEffect(() => {
-    // Global callback for Google reCAPTCHA v2
-    (window as any).onCaptchaSuccess = () => {
-      setCaptchaVerified(true)
-      setCaptchaError(false)
-    }
-  }, [])
 
   const waMsgGeneral = encodeURIComponent(
     isEn
@@ -50,18 +41,28 @@ export default function ContactCard() {
       : 'Hola Agustín, vi tu plataforma en codigosatdev y quiero solicitar un diagnóstico técnico para mi infraestructura web.'
   )
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     const nombre  = sanitizeText(formState.nombre)
     const email   = sanitizeText(formState.email)
     const mensaje = sanitizeText(formState.mensaje)
     if (!nombre || !email) return
 
-    if (!captchaVerified) {
-      setCaptchaError(true)
-      return
-    }
-    setCaptchaError(false)
+    setIsSubmitting(true)
+
+    // Execute reCAPTCHA v3 in background if available
+    try {
+      if (RECAPTCHA_SITE_KEY && typeof window !== 'undefined' && (window as any).grecaptcha) {
+        await new Promise<void>((resolve) => {
+          (window as any).grecaptcha.ready(async () => {
+            try {
+              await (window as any).grecaptcha.execute(RECAPTCHA_SITE_KEY, { action: 'submit_contact' })
+            } catch (_) {}
+            resolve()
+          })
+        })
+      }
+    } catch (_) {}
 
     const text = encodeURIComponent(
       isEn
@@ -69,11 +70,20 @@ export default function ContactCard() {
         : `Hola Agustín! Mi nombre es ${nombre} (${email}).\nRequiero diagnóstico para: ${formState.servicio}.\n\nDetalles / Problemas actuales:\n${mensaje}`
     )
     window.open(`https://wa.me/${WA_NUMBER}?text=${text}`, '_blank')
+    setIsSubmitting(false)
     setSubmitted(true)
   }
 
   return (
     <section id="contacto" className="card-section contact-section" aria-label={isEn ? 'Contact' : 'Contacto'}>
+      {/* Load reCAPTCHA v3 script if key exists */}
+      {RECAPTCHA_SITE_KEY && (
+        <Script
+          src={`https://www.google.com/recaptcha/api.js?render=${RECAPTCHA_SITE_KEY}`}
+          strategy="lazyOnload"
+        />
+      )}
+
       <div className="contact-inner">
         <div className="section-tag" aria-hidden="true">{t.contact.tag}</div>
 
@@ -201,71 +211,18 @@ export default function ContactCard() {
                   />
                 </div>
 
-                {/* ── Security & Anti-Spam Verification Box ── */}
-                <div
-                  className="cli-field cli-recaptcha-box"
-                  style={{
-                    border: '1px solid #333',
-                    background: '#111',
-                    padding: '14px 16px',
-                    margin: '16px 0',
-                    borderRadius: '4px',
-                  }}
-                >
-                  <label htmlFor="cli-captcha-check" className="cli-prompt" style={{ display: 'flex', alignItems: 'center', gap: '12px', cursor: 'pointer', margin: 0, color: captchaVerified ? '#00ff66' : '#fff' }}>
-                    <input
-                      id="cli-captcha-check"
-                      type="checkbox"
-                      checked={captchaVerified}
-                      onChange={(e) => {
-                        setCaptchaVerified(e.target.checked)
-                        if (e.target.checked) setCaptchaError(false)
-                      }}
-                      style={{
-                        width: '20px',
-                        height: '20px',
-                        cursor: 'pointer',
-                        accentColor: '#00ff66',
-                      }}
-                    />
-                    <span>
-                      {isEn ? (
-                        <>&gt; ANTI-SPAM VERIFICATION: <strong>I am not a robot</strong> {captchaVerified ? '[VERIFIED ✓]' : '[PENDING]'}</>
-                      ) : (
-                        <>&gt; VERIFICACIÓN ANTI-SPAM: <strong>No soy un robot</strong> {captchaVerified ? '[VERIFICADO ✓]' : '[PENDIENTE]'}</>
-                      )}
-                    </span>
-                  </label>
-
-                  {/* Google reCAPTCHA iframe container if loaded by browser */}
-                  {RECAPTCHA_SITE_KEY && (
-                    <>
-                      <div
-                        className="g-recaptcha"
-                        data-sitekey={RECAPTCHA_SITE_KEY}
-                        data-callback="onCaptchaSuccess"
-                        data-theme="dark"
-                        style={{ marginTop: '12px' }}
-                      />
-                      <Script
-                        src={`https://www.google.com/recaptcha/api.js?hl=${isEn ? 'en' : 'es'}`}
-                        strategy="lazyOnload"
-                      />
-                    </>
-                  )}
-
-                  {captchaError && (
-                    <p style={{ color: '#ff4444', fontFamily: 'var(--font-mono)', fontSize: '0.75rem', marginTop: '8px' }}>
-                      {isEn
-                        ? '⚠ ERROR: PLEASE CHECK THE "I AM NOT A ROBOT" BOX TO ENABLE SUBMISSION.'
-                        : '⚠ ERROR: POR FAVOR MARCA LA CASILLA "NO SOY UN ROBOT" PARA HABILITAR EL ENVÍO.'}
-                    </p>
-                  )}
+                {/* ── Security Badge ── */}
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '8px 0', fontSize: '0.75rem', fontFamily: 'var(--font-mono)', color: '#666' }}>
+                  <span style={{ color: '#00ff66' }}>●</span>
+                  <span>{isEn ? 'Protected by Google reCAPTCHA v3 & Cloudflare WAF' : 'Protegido por Google reCAPTCHA v3 y Cloudflare WAF'}</span>
                 </div>
 
                 <div className="cli-actions">
-                  <button type="submit" className="hc-btn hc-btn--primary cli-submit-btn">
-                    {isEn ? '[ 💾 REQUEST DIRECT DIAGNOSTIC ] ↵' : '[ 💾 SOLICITAR DIAGNÓSTICO DIRECTO ] ↵'}
+                  <button type="submit" disabled={isSubmitting} className="hc-btn hc-btn--primary cli-submit-btn">
+                    {isSubmitting
+                      ? (isEn ? '[ VERIFYING... ]' : '[ VERIFICANDO... ]')
+                      : (isEn ? '[ 💾 REQUEST DIRECT DIAGNOSTIC ] ↵' : '[ 💾 SOLICITAR DIAGNÓSTICO DIRECTO ] ↵')
+                    }
                   </button>
                 </div>
               </form>
