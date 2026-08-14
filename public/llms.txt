@@ -1,0 +1,23 @@
+# codigosatdev — Director de Tecnología (CTO) & Consultor de Infraestructura Web
+
+> Plataformas web de alto rendimiento, arquitecturas desacopladas (Headless WordPress + Next.js), tiendas Shopify a medida, ingeniería WPO (Core Web Vitals y TTFB < 200ms) y seguridad perimetral con Cloudflare.
+
+## Información Principal
+- **Consultor / CTO:** Agustín (`codigosatdev`)
+- **Sitio Web Oficial:** https://codigosatdev.com
+- **WhatsApp Directo:** https://wa.me/584245422849
+- **Email de Contacto:** kodigosat@gmail.com
+- **Disponibilidad:** Consultoría estratégica, auditoría técnica preliminar y desarrollo de proyectos de alto valor para empresas y marcas globales.
+
+## Soluciones y Servicios Especializados
+- **Arquitecturas Headless (Next.js + WordPress / Shopify):** Desacoplamiento de frontend y backend para velocidad de carga instantánea, máxima seguridad y optimización SEO nativa.
+- **Ingeniería WPO (Web Performance Optimization):** Reducción de TTFB (Time to First Byte < 200ms) y optimización de métricas Core Web Vitals de Google para evitar pérdidas de conversión por lentitud móvil.
+- **E-Commerce de Alto Rendimiento:** Desarrollo a medida en Shopify (Liquid) y WooCommerce avanzado con optimización de base de datos y checkouts sin fricción.
+- **Desarrollo de Plugins & Software a Medida:** Creación de extensiones y plugins personalizados en PHP moderno/TypeScript, conexión con CRMs y automatización con WhatsApp API.
+- **Continuidad Operativa & Blindaje de Servidores:** Configuración de seguridad perimetral con Cloudflare WAF, mitigación de ataques DDoS, hardening de servidores Linux y soporte contra caídas.
+- **Sistemas de Captación Directa:** Landing pages ultrarrápidas de alta conversión conectadas a flujos de prospección automatizada y analítica.
+
+## Arsenal Tecnológico
+- **Frontend & Modern Web:** Headless WordPress, Next.js, React, Astro.js, TypeScript, Tailwind CSS, GraphQL.
+- **CMS & E-Commerce:** Shopify Liquid, WooCommerce avanzado, Plugins desde cero, PHP 8.x, REST APIs y Webhooks.
+- **Infraestructura & Seguridad:** Cloudflare WAF / CDN / DDoS, Linux Hardening (Ubuntu/Debian), Nginx, SSL/TLS y cabeceras CSP.

@@ -5,8 +5,8 @@ import SystemStatus from './SystemStatus'
 import Typewriter from './Typewriter'
 import { useLanguage } from '@/context/LanguageContext'
 
-const WA_NUMBER = process.env.NEXT_PUBLIC_WA_NUMBER ?? 'TUNUMERO'
-const WA_MSG = encodeURIComponent('Hola, me interesa hablar sobre un proyecto')
+const WA_NUMBER = process.env.NEXT_PUBLIC_WA_NUMBER ?? '584245422849'
+const WA_MSG = encodeURIComponent('Hola Agustín, vi tu plataforma en codigosatdev y quiero solicitar un diagnóstico técnico para mi infraestructura web.')
 
 interface HeroCardProps {
   userName?: string

@@ -8,7 +8,7 @@ const WA_NUMBER = process.env.NEXT_PUBLIC_WA_NUMBER ?? '584245422849'
 const CONTACT_EMAIL = process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? 'kodigosat@gmail.com'
 const RECAPTCHA_SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY ?? ''
 
-const WA_MSG = encodeURIComponent('Hola Agustín, vi tu portafolio en codigosatdev y quiero consultar por un proyecto.')
+const WA_MSG = encodeURIComponent('Hola Agustín, vi tu plataforma en codigosatdev y quiero solicitar un diagnóstico técnico para mi infraestructura web.')
 
 /**
  * Strips HTML tags and trims to prevent XSS / injection in WhatsApp message.
@@ -23,7 +23,7 @@ export default function ContactCard() {
   const [formState, setFormState] = useState({
     nombre: '',
     email: '',
-    servicio: 'WordPress Headless & Next.js',
+    servicio: 'Arquitecturas Headless (Next.js + WP / Shopify)',
     mensaje: '',
   })
   const [captchaVerified, setCaptchaVerified] = useState(false)
@@ -52,7 +52,7 @@ export default function ContactCard() {
     setCaptchaError(false)
 
     const text = encodeURIComponent(
-      `Hola Agustín! Mi nombre es ${nombre} (${email}).\nMe interesa: ${formState.servicio}.\n\nMensaje: ${mensaje}`
+      `Hola Agustín! Mi nombre es ${nombre} (${email}).\nRequiero diagnóstico para: ${formState.servicio}.\n\nDetalles / Problemas actuales:\n${mensaje}`
     )
     window.open(`https://wa.me/${WA_NUMBER}?text=${text}`, '_blank')
     setSubmitted(true)
@@ -61,13 +61,13 @@ export default function ContactCard() {
   return (
     <section id="contacto" className="card-section contact-section" aria-label="Contacto">
       <div className="contact-inner">
-        <div className="section-tag" aria-hidden="true">05 — CONTACTO & DIRECT TERMINAL</div>
+        <div className="section-tag" aria-hidden="true">05 — DIAGNÓSTICO & DIRECT TERMINAL</div>
 
         <h2 className="contact-title retro-glitch">
-          ¿Tienes un proyecto en mente?
+          ¿Problemas de lentitud o caídas en tu sitio?
         </h2>
         <p className="contact-subtitle">
-          Hablemos directamente. Completa la terminal de mensaje o contáctame por WhatsApp para agendar una llamada.
+          Evaluemos tu infraestructura antes de presupuestar. Completa la terminal de mensaje o contáctame directamente por WhatsApp para agendar una llamada de diagnóstico.
         </p>
 
         {/* 80s CLI Terminal Contact Form */}
@@ -76,15 +76,15 @@ export default function ContactCard() {
             <span className="cli-dot red"></span>
             <span className="cli-dot yellow"></span>
             <span className="cli-dot green"></span>
-            <span className="cli-title">TERMINAL DE MENSAJE DIRECTO // CODIGOSATDEV CLI</span>
+            <span className="cli-title">TERMINAL DE DIAGNÓSTICO DIRECTO // CODIGOSATDEV CLI</span>
           </div>
 
           <div className="cli-body">
             {submitted ? (
               <div className="cli-success-msg">
-                <p className="success-icon">[✓] TERMINAL STATUS: OK (200)</p>
+                <p className="success-icon">[✓] TERMINAL STATUS: DIAGNÓSTICO INICIADO (200 OK)</p>
                 <p className="success-text">
-                  ¡Gracias, <strong>{formState.nombre}</strong>! Se ha iniciado la conversación de tu proyecto en WhatsApp.
+                  ¡Gracias, <strong>{formState.nombre}</strong>! Se ha iniciado la sesión de diagnóstico para tu negocio en WhatsApp.
                 </p>
                 <button
                   type="button"
@@ -92,21 +92,21 @@ export default function ContactCard() {
                   className="hc-btn"
                   style={{ marginTop: 'var(--sp-4)' }}
                 >
-                  ENVIAR OTRO MENSAJE ↵
+                  ENVIAR OTRA CONSULTA ↵
                 </button>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="cli-form">
                 <div className="cli-field">
                   <label htmlFor="cli-nombre" className="cli-prompt">
-                    &gt; INGRESA TU NOMBRE:
+                    &gt; INGRESA TU NOMBRE O EMPRESA:
                   </label>
                   <input
                     id="cli-nombre"
                     type="text"
                     required
                     maxLength={100}
-                    placeholder="Ej. Carlos Mendoza"
+                    placeholder="Ej. Carlos Mendoza · Nexus Corp"
                     value={formState.nombre}
                     onChange={(e) => setFormState({ ...formState, nombre: e.target.value })}
                     className="cli-input"
@@ -115,7 +115,7 @@ export default function ContactCard() {
 
                 <div className="cli-field">
                   <label htmlFor="cli-email" className="cli-prompt">
-                    &gt; TU EMAIL O TELÉFONO:
+                    &gt; TU EMAIL O TELÉFONO DE CONTACTO:
                   </label>
                   <input
                     id="cli-email"
@@ -131,7 +131,7 @@ export default function ContactCard() {
 
                 <div className="cli-field">
                   <label htmlFor="cli-servicio" className="cli-prompt">
-                    &gt; SERVICIO REQUERIDO:
+                    &gt; SOLUCIÓN / ARQUITECTURA REQUERIDA:
                   </label>
                   <select
                     id="cli-servicio"
@@ -139,23 +139,23 @@ export default function ContactCard() {
                     onChange={(e) => setFormState({ ...formState, servicio: e.target.value })}
                     className="cli-select"
                   >
-                    <option value="WordPress Headless & Next.js">WordPress Headless & Next.js</option>
-                    <option value="WordPress & Elementor PRO desde 0">WordPress & Elementor PRO desde 0</option>
-                    <option value="Desarrollo de Plugins WP a medida">Desarrollo de Plugins WP a medida</option>
-                    <option value="Shopify & E-Commerce">Shopify & E-Commerce</option>
-                    <option value="Apps Móviles (iOS & Android)">Apps Móviles (iOS & Android)</option>
-                    <option value="Cloudflare & Seguridad Servidores">Cloudflare & Seguridad Servidores</option>
+                    <option value="Arquitecturas Headless (Next.js + WP / Shopify)">Arquitecturas Headless (Next.js + WP / Shopify)</option>
+                    <option value="Ingeniería WPO & Rendimiento Extremo">Ingeniería WPO & Rendimiento Extremo</option>
+                    <option value="E-Commerce de Alto Rendimiento (Shopify / WooCommerce)">E-Commerce de Alto Rendimiento (Shopify / WooCommerce)</option>
+                    <option value="Desarrollo de Plugins & Software a Medida">Desarrollo de Plugins & Software a Medida</option>
+                    <option value="Continuidad Operativa & Blindaje de Servidores">Continuidad Operativa & Blindaje de Servidores</option>
+                    <option value="Sistemas de Captación Directa (Landing + CRM)">Sistemas de Captación Directa (Landing + CRM)</option>
                   </select>
                 </div>
 
                 <div className="cli-field">
                   <label htmlFor="cli-mensaje" className="cli-prompt">
-                    &gt; DETALLES DEL PROYECTO O CONSULTA:
+                    &gt; DETALLES DEL PROBLEMA O SITIO ACTUAL:
                   </label>
                   <textarea
                     id="cli-mensaje"
                     rows={3}
-                    placeholder="Cuéntame sobre tu sitio web actual o tus requerimientos..."
+                    placeholder="Describe el cuello de botella actual (lentitud, caídas, bajas conversiones) o tu URL actual..."
                     value={formState.mensaje}
                     onChange={(e) => setFormState({ ...formState, mensaje: e.target.value })}
                     className="cli-textarea"
@@ -216,7 +216,7 @@ export default function ContactCard() {
 
                 <div className="cli-actions">
                   <button type="submit" className="hc-btn hc-btn--primary cli-submit-btn">
-                    [ 💾 ENVIAR MENSAJE DIRECTO ] ↵
+                    [ 💾 SOLICITAR DIAGNÓSTICO DIRECTO ] ↵
                   </button>
                 </div>
               </form>
@@ -251,7 +251,7 @@ export default function ContactCard() {
           <div className="contact-option">
             <span className="contact-option-label">DISPONIBILIDAD DE PROYECTO</span>
             <span className="contact-option-value" style={{ color: '#00ff00', fontFamily: 'var(--font-mono)' }}>
-              🟢 DISPONIBLE / RESPUESTA &lt; 1H
+              🟢 DISPONIBLE / EVALUACIÓN &lt; 24H
             </span>
           </div>
         </div>
@@ -259,7 +259,7 @@ export default function ContactCard() {
         <footer className="contact-footer">
           <span className="contact-footer-logo">codigosatdev</span>
           <span className="contact-footer-copy">
-            © {year} · Sitios web que duran. Infraestructura que protege.
+            © {year} · Director de Tecnología (CTO) & Consultor Estratégico de Infraestructura Web
           </span>
         </footer>
       </div>

@@ -33,23 +33,25 @@ const inter = Inter({
 /* ── Site Metadata ─────────────────────────────────────── */
 export const metadata: Metadata = {
   metadataBase: new URL('https://codigosatdev.com'),
-  title: 'codigosatdev — Full Stack Developer',
+  title: 'codigosatdev — Director de Tecnología (CTO) & Consultor de Infraestructura Web',
   description:
-    'Full Stack Developer especializado en WordPress Headless, Next.js, Shopify, Cloudflare e Inteligencia Artificial. Soluciones web de alto rendimiento.',
+    'Consultoría estratégica de infraestructura web, arquitecturas Headless (Next.js + WordPress), tiendas Shopify a medida, ingeniería WPO (Core Web Vitals) y blindaje con Cloudflare.',
   keywords: [
+    'Consultor CTO',
+    'Director de Tecnología',
     'WordPress Headless',
     'Next.js',
-    'Shopify',
-    'Cloudflare',
-    'Server Security',
-    'AI-Powered Development',
-    'Full Stack Developer',
+    'Shopify a Medida',
+    'Cloudflare WAF',
+    'Ingeniería WPO',
+    'Core Web Vitals',
+    'Seguridad de Servidores',
     'codigosatdev',
   ],
   openGraph: {
-    title: 'codigosatdev — Full Stack Developer',
+    title: 'codigosatdev — Director de Tecnología (CTO) & Consultor de Infraestructura Web',
     description:
-      'WordPress Headless, Next.js, Shopify, Cloudflare, IA y Seguridad. Soluciones web que funcionan en producción.',
+      'Infraestructura digital diseñada para facturar, no para romperse. Headless WordPress, Next.js, Shopify, WPO y Cloudflare.',
     type: 'website',
     locale: 'es_ES',
     url: 'https://codigosatdev.com',
@@ -59,14 +61,14 @@ export const metadata: Metadata = {
         url: '/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'codigosatdev — Full Stack Developer',
+        alt: 'codigosatdev — Consultor Estratégico & Arquitectura Web de Alto Rendimiento',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'codigosatdev — Full Stack Developer',
-    description: 'WordPress Headless, Next.js, Shopify, Cloudflare y Seguridad.',
+    title: 'codigosatdev — Director de Tecnología (CTO) & Consultor de Infraestructura Web',
+    description: 'Headless WordPress, Next.js, Shopify, WPO Extremo y Seguridad Cloudflare.',
     images: ['/og-image.png'],
   },
   icons: {
@@ -83,6 +85,50 @@ export const metadata: Metadata = {
   },
 }
 
+/* ── Schema.org JSON-LD Structured Data ─────────────────── */
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      '@id': 'https://codigosatdev.com/#website',
+      url: 'https://codigosatdev.com',
+      name: 'codigosatdev — Director de Tecnología (CTO) & Consultor Web',
+      description: 'Consultoría Estratégica, Headless WordPress, Next.js, Shopify, WPO y Seguridad Web.',
+      inLanguage: 'es-ES',
+    },
+    {
+      '@type': 'ProfessionalService',
+      '@id': 'https://codigosatdev.com/#service',
+      name: 'codigosatdev',
+      url: 'https://codigosatdev.com',
+      image: 'https://codigosatdev.com/og-image.png',
+      description:
+        'Consultoría técnica y desarrollo de infraestructura web de alto rendimiento, Headless WordPress, Next.js, Shopify y WPO.',
+      telephone: '+584245422849',
+      email: 'kodigosat@gmail.com',
+      priceRange: '$$$',
+      areaServed: 'Worldwide',
+      serviceType: [
+        'Headless WordPress & Next.js',
+        'Ingeniería WPO & Rendimiento Extremo',
+        'E-Commerce de Alto Rendimiento Shopify / WooCommerce',
+        'Desarrollo de Plugins & Software a Medida',
+        'Continuidad Operativa & Seguridad Cloudflare',
+        'Sistemas de Captación Directa',
+      ],
+    },
+    {
+      '@type': 'Person',
+      '@id': 'https://codigosatdev.com/#person',
+      name: 'Agustín',
+      alternateName: 'codigosatdev',
+      url: 'https://codigosatdev.com',
+      jobTitle: 'Director de Tecnología (CTO) & Consultor de Infraestructura Web',
+    },
+  ],
+}
+
 export default function RootLayout({
   children,
 }: {
@@ -90,6 +136,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es" className={`${silkscreen.variable} ${courierPrime.variable} ${inter.variable}`} suppressHydrationWarning>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body suppressHydrationWarning>
         <LanguageProvider>
           <div className="app">

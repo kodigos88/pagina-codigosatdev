@@ -3,8 +3,8 @@
 import { IconWP, IconReact, IconShop, IconCloud } from '@/components/icons'
 import { useLanguage } from '@/context/LanguageContext'
 
-const WA_NUMBER = process.env.NEXT_PUBLIC_WA_NUMBER ?? 'TUNUMERO'
-const WA_MSG_PROJECT = encodeURIComponent('Hola, me interesa hablar sobre un proyecto')
+const WA_NUMBER = process.env.NEXT_PUBLIC_WA_NUMBER ?? '584245422849'
+const WA_MSG_PROJECT = encodeURIComponent('Hola Agustín, vi las soluciones en codigosatdev y quiero consultar sobre la arquitectura técnica de mi negocio.')
 
 const SERVICE_ICONS = [
   <IconWP key="wp1" />,
