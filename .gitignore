@@ -45,3 +45,6 @@ next-env.d.ts
 # Markdown documentation / private notes
 *.md
 
+# Videos del portfolio (binarios pesados — se suben directamente a Vercel/CDN)
+public/portfolio/*.mp4
+
