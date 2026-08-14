@@ -73,7 +73,7 @@ function DeviceMedia({
 
   if (video) {
     return (
-      <div style={{ position: 'relative', width: '100%', height: '100%' }}>
+      <div className="pm-device__video-wrap" style={{ position: 'relative', width: '100%', height: '100%', background: '#000' }}>
         <video
           ref={videoRef}
           src={video}
@@ -81,7 +81,16 @@ function DeviceMedia({
           muted
           loop
           playsInline
+          preload="auto"
           className="pm-device__media"
+          style={{
+            width: '100%',
+            height: '100%',
+            objectFit: 'contain',
+            display: 'block',
+            background: '#000',
+            pointerEvents: 'auto',
+          }}
         />
         <button
           type="button"
