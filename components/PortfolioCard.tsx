@@ -6,40 +6,38 @@ import { IconWhatsApp } from '@/components/icons'
 import { useLanguage } from '@/context/LanguageContext'
 import type { ShowcaseProject } from '@/types'
 
-// ── Lazy Video: only loads + plays when scrolled into view (mobile performance) ──
-function LazyVideo({ src, className }: { src: string; className?: string }) {
+// ── Instant Video Thumbnail (Preloaded & Faststart) ──
+function PortfolioVideo({ src, className }: { src: string; className?: string }) {
   const ref = useRef<HTMLVideoElement>(null)
-  const [inView, setInView] = useState(false)
 
   useEffect(() => {
-    const el = ref.current
-    if (!el) return
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setInView(true)
-          observer.disconnect()
-        }
-      },
-      { threshold: 0.25 }
-    )
-    observer.observe(el)
-    return () => observer.disconnect()
-  }, [])
+    // Ensure autoplay plays smoothly as soon as ready
+    if (ref.current) {
+      ref.current.play().catch(() => {})
+    }
+  }, [src])
 
   return (
     <video
       ref={ref}
-      src={inView ? src : undefined}
-      autoPlay={inView}
+      src={src}
+      autoPlay
       muted
       loop
       playsInline
-      preload="none"
+      preload="auto"
       className={className}
+      style={{
+        width: '100%',
+        height: '100%',
+        objectFit: 'cover',
+        display: 'block',
+        background: '#000',
+      }}
     />
   )
 }
+
 
 // Lazy-load the modal so it doesn't block initial page paint
 const ProjectModal = dynamic(() => import('@/components/ProjectModal'), { ssr: false })
@@ -350,7 +348,7 @@ export default function PortfolioCard() {
                   {(item.image || item.video) && (
                     <div className="portfolio-thumb">
                       {item.video ? (
-                        <LazyVideo
+                        <PortfolioVideo
                           src={item.video}
                           className="portfolio-thumb__img"
                         />
