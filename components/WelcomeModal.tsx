@@ -71,19 +71,7 @@ export default function WelcomeModal({ onSetUserName }: WelcomeModalProps) {
         padding: '20px',
       }}
     >
-      <div
-        className="hc-card animate-deal"
-        style={{
-          maxWidth: '480px',
-          width: '100%',
-          padding: '32px 28px',
-          textAlign: 'center',
-          background: 'var(--c-white)',
-          color: 'var(--c-black)',
-          border: 'var(--bdr-thick)',
-          boxShadow: '8px 8px 0 var(--c-black)',
-        }}
-      >
+      <div className="hc-card animate-deal welcome-modal-card">
         <div
           style={{
             fontFamily: 'var(--font-display)',
@@ -96,14 +84,7 @@ export default function WelcomeModal({ onSetUserName }: WelcomeModalProps) {
           {t.modal.bootTag}
         </div>
 
-        <h2
-          style={{
-            fontFamily: 'var(--font-display)',
-            fontSize: '1.5rem',
-            marginBottom: '12px',
-            lineHeight: 1.2,
-          }}
-        >
+        <h2 className="welcome-modal-title">
           {t.modal.title}
         </h2>
 
@@ -118,7 +99,7 @@ export default function WelcomeModal({ onSetUserName }: WelcomeModalProps) {
           {t.modal.subtitle}
         </p>
 
-        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '16px', width: '100%' }}>
           <input
             type="text"
             value={nameInput}
@@ -126,6 +107,8 @@ export default function WelcomeModal({ onSetUserName }: WelcomeModalProps) {
             placeholder={t.modal.placeholder}
             autoFocus
             style={{
+              width: '100%',
+              boxSizing: 'border-box',
               padding: '12px 16px',
               fontFamily: 'var(--font-mono)',
               fontSize: '1rem',
@@ -137,15 +120,15 @@ export default function WelcomeModal({ onSetUserName }: WelcomeModalProps) {
             }}
           />
 
-          <div style={{ display: 'flex', gap: '12px', justifyContent: 'center' }}>
-            <button type="submit" className="hc-btn hc-btn--primary hc-btn--lg" style={{ flex: 1 }}>
+          <div className="welcome-modal-actions">
+            <button type="submit" className="hc-btn hc-btn--primary hc-btn--lg" style={{ flex: '1 1 auto', minWidth: '180px' }}>
               {t.modal.btnEnter}
             </button>
             <button
               type="button"
               onClick={handleSkip}
               className="hc-btn"
-              style={{ fontSize: '0.75rem' }}
+              style={{ flex: '0 0 auto', fontSize: '0.85rem' }}
             >
               {t.modal.btnSkip}
             </button>

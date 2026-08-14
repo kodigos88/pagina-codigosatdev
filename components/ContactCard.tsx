@@ -238,13 +238,21 @@ export default function ContactCard() {
                   </label>
 
                   {/* Google reCAPTCHA iframe container if loaded by browser */}
-                  <div
-                    className="g-recaptcha"
-                    data-sitekey={RECAPTCHA_SITE_KEY}
-                    data-callback="onCaptchaSuccess"
-                    data-theme="dark"
-                    style={{ marginTop: '12px' }}
-                  />
+                  {RECAPTCHA_SITE_KEY && (
+                    <>
+                      <div
+                        className="g-recaptcha"
+                        data-sitekey={RECAPTCHA_SITE_KEY}
+                        data-callback="onCaptchaSuccess"
+                        data-theme="dark"
+                        style={{ marginTop: '12px' }}
+                      />
+                      <Script
+                        src={`https://www.google.com/recaptcha/api.js?hl=${isEn ? 'en' : 'es'}`}
+                        strategy="lazyOnload"
+                      />
+                    </>
+                  )}
 
                   {captchaError && (
                     <p style={{ color: '#ff4444', fontFamily: 'var(--font-mono)', fontSize: '0.75rem', marginTop: '8px' }}>
@@ -254,10 +262,6 @@ export default function ContactCard() {
                     </p>
                   )}
                 </div>
-                <Script
-                  src={`https://www.google.com/recaptcha/api.js?hl=${isEn ? 'en' : 'es'}`}
-                  strategy="lazyOnload"
-                />
 
                 <div className="cli-actions">
                   <button type="submit" className="hc-btn hc-btn--primary cli-submit-btn">
