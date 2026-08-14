@@ -5,6 +5,7 @@ import '../styles/sections.css'
 import CardNav from '@/components/CardNav'
 import WhatsAppBadge from '@/components/WhatsAppBadge'
 import { LanguageProvider } from '@/context/LanguageContext'
+import { Analytics } from '@vercel/analytics/react'
 
 /* ── Google Fonts via next/font (zero FOUT, self-hosted) ── */
 const silkscreen = Silkscreen({
@@ -151,6 +152,7 @@ export default function RootLayout({
             <WhatsAppBadge />
           </div>
         </LanguageProvider>
+        <Analytics />
       </body>
     </html>
   )
