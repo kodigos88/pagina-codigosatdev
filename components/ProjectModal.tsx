@@ -135,6 +135,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
 
   const isVideo = Boolean(project.video)
   const hasMedia = Boolean(project.video || project.image || project.imageDesktop)
+  const hasGsap = project.category === 'ANIMACIONES' || project.stack.some(s => s.toLowerCase().includes('gsap'))
 
   const waText = encodeURIComponent(
     isEn
@@ -193,15 +194,23 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
           {/* ── Body ── */}
           <div className="pm-body">
 
-            {/* ── GSAP Video notice ── */}
+            {/* ── Video notice banner ── */}
             {isVideo && (
               <div className="pm-video-notice">
                 <span className="pm-video-notice__icon">▶</span>
                 <span>
-                  {isEn ? (
-                    <>This project features <strong>live GSAP animations</strong> — the video showcases real site interactions.</>
+                  {hasGsap ? (
+                    isEn ? (
+                      <>This project features <strong>live GSAP animations</strong> — the video showcases real site interactions.</>
+                    ) : (
+                      <>Este proyecto incluye <strong>animaciones GSAP en vivo</strong> — el video muestra las interacciones reales del sitio.</>
+                    )
                   ) : (
-                    <>Este proyecto incluye <strong>animaciones GSAP en vivo</strong> — el video muestra las interacciones reales del sitio.</>
+                    isEn ? (
+                      <>This video showcases the <strong>live layout, navigation, and user experience</strong> of the project.</>
+                    ) : (
+                      <>Este video muestra la <strong>maquetación, navegación y experiencia real</strong> del proyecto.</>
+                    )
                   )}
                 </span>
               </div>
@@ -231,7 +240,9 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                   </div>
                   <div className="pm-device__stand" />
                   <div className="pm-device__base" />
-                  <span className="pm-device__label">DESKTOP (FULL GSAP SCREEN)</span>
+                  <span className="pm-device__label">
+                    {hasGsap ? 'DESKTOP (FULL GSAP SCREEN)' : 'DESKTOP (LIVE PREVIEW)'}
+                  </span>
                 </div>
 
                 {/* Tablet — Omitted for video projects */}
@@ -292,7 +303,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                 <span className="pm-cli-key">&gt; STACK</span>
                 <span className="pm-cli-val">{project.stack.join(' + ')}</span>
               </div>
-              {isVideo && (
+              {hasGsap && (
                 <div className="pm-cli-row">
                   <span className="pm-cli-key">&gt; {isEn ? 'ANIMATIONS' : 'ANIMACIONES'}</span>
                   <span className="pm-cli-val pm-cli-val--anim">GSAP — ScrollTrigger / Timeline</span>
@@ -314,7 +325,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
               {project.stack.map((tech) => (
                 <span key={tech} className="portfolio-tech-chip">{tech.trim()}</span>
               ))}
-              {isVideo && <span className="portfolio-tech-chip pm-gsap-chip">GSAP</span>}
+              {hasGsap && <span className="portfolio-tech-chip pm-gsap-chip">GSAP</span>}
             </div>
 
             {/* Footer Actions */}
