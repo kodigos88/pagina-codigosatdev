@@ -13,7 +13,14 @@ interface HeroCardProps {
 }
 
 export default function HeroCard({ userName }: HeroCardProps) {
-  const { t } = useLanguage()
+  const { lang, t } = useLanguage()
+  const isEn = lang === 'en'
+
+  const waMsg = encodeURIComponent(
+    isEn
+      ? 'Hello Agustín, I saw your platform at codigosatdev and would like to request a technical diagnostic for my web infrastructure.'
+      : 'Hola Agustín, vi tu plataforma en codigosatdev y quiero solicitar un diagnóstico técnico para mi infraestructura web.'
+  )
 
   const greetingText = userName
     ? t.hero.greetingUser.replace('{name}', userName)
@@ -23,7 +30,7 @@ export default function HeroCard({ userName }: HeroCardProps) {
     <section
       id="inicio"
       className="card-section hero-section hero-section--dithered"
-      aria-label="Inicio"
+      aria-label={isEn ? 'Home' : 'Inicio'}
     >
       <div className="hero-inner">
         <div className="hero-card-wrap animate-deal">
@@ -39,7 +46,7 @@ export default function HeroCard({ userName }: HeroCardProps) {
             {/* System Status Terminal Widget */}
             <SystemStatus />
 
-            <p className="hero-eyebrow" aria-label="Bienvenida personalizada">
+            <p className="hero-eyebrow" aria-label={isEn ? 'Personalized welcome' : 'Bienvenida personalizada'}>
               <Typewriter text={greetingText} speed={40} delay={150} />
             </p>
 
@@ -66,11 +73,11 @@ export default function HeroCard({ userName }: HeroCardProps) {
                 {t.hero.btnServices}
               </a>
               <a
-                href={`https://wa.me/${WA_NUMBER}?text=${WA_MSG}`}
+                href={`https://wa.me/${WA_NUMBER}?text=${waMsg}`}
                 className="hc-btn hc-btn--lg"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Contactar por WhatsApp"
+                aria-label={isEn ? 'Contact via WhatsApp' : 'Contactar por WhatsApp'}
               >
                 <IconWhatsApp />
                 {t.hero.btnWhatsApp}
