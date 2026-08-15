@@ -190,6 +190,9 @@
   grid-template-columns: 1fr 1fr;
   gap: 0;
   border: var(--bdr-normal);
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 .service-item {
@@ -1742,10 +1745,17 @@
 
 .hero-section--dithered {
   background-color: #0e0e0e;
-  background-image: url('/hero-bg-dithered.png');
+  background-image: url('/hero-bg-dithered.webp');
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
+}
+
+/* Fallback for browsers that don't support WebP */
+@supports not (background-image: url('/test.webp')) {
+  .hero-section--dithered {
+    background-image: url('/hero-bg-dithered.png');
+  }
 }
 
 .hero-section--dithered .scroll-hint {

@@ -37,9 +37,9 @@ export default function ServicesCard() {
           </a>
         </div>
 
-        <div className="services-grid" role="list">
+        <ul className="services-grid">
           {t.services.items.map((s, idx) => (
-            <article key={s.name} className="service-item service-item--interactive" role="listitem">
+            <li key={s.name} className="service-item service-item--interactive">
               <div className="service-icon" aria-hidden="true">{SERVICE_ICONS[idx]}</div>
               <h3 className="service-name">{s.name}</h3>
 
@@ -51,9 +51,9 @@ export default function ServicesCard() {
 
               {/* Service description revealed on hover */}
               <p className="service-desc">{s.desc}</p>
-            </article>
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
     </section>
   )

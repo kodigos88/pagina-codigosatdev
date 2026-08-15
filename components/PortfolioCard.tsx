@@ -6,26 +6,43 @@ import { IconWhatsApp } from '@/components/icons'
 import { useLanguage } from '@/context/LanguageContext'
 import type { ShowcaseProject } from '@/types'
 
-// ── Instant Video Thumbnail (Preloaded & Faststart) ──
+// ── Smart Video: preload="metadata" + play only when visible ──
 function PortfolioVideo({ src, className }: { src: string; className?: string }) {
   const ref = useRef<HTMLVideoElement>(null)
 
   useEffect(() => {
-    // Ensure autoplay plays smoothly as soon as ready
-    if (ref.current) {
-      ref.current.play().catch(() => {})
-    }
+    const video = ref.current
+    if (!video) return
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // Start loading full content and play only when visible
+            video.preload = 'auto'
+            video.play().catch(() => {})
+          } else {
+            // Pause and free memory when scrolled out of view
+            video.pause()
+          }
+        })
+      },
+      { threshold: 0.25 } // 25% visible before playing
+    )
+
+    observer.observe(video)
+    return () => observer.disconnect()
   }, [src])
 
   return (
     <video
       ref={ref}
       src={src}
-      autoPlay
+      autoPlay={false}
       muted
       loop
       playsInline
-      preload="auto"
+      preload="metadata"
       className={className}
       style={{
         width: '100%',

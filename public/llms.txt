@@ -21,3 +21,12 @@
 - **Frontend & Modern Web:** Headless WordPress, Next.js, React, Astro.js, TypeScript, Tailwind CSS, GraphQL.
 - **CMS & E-Commerce:** Shopify Liquid, WooCommerce avanzado, Plugins desde cero, PHP 8.x, REST APIs y Webhooks.
 - **Infraestructura & Seguridad:** Cloudflare WAF / CDN / DDoS, Linux Hardening (Ubuntu/Debian), Nginx, SSL/TLS y cabeceras CSP.
+
+## Páginas y Secciones del Sitio
+- [Inicio / Hero](https://codigosatdev.com/#inicio)
+- [Servicios](https://codigosatdev.com/#servicios)
+- [Stack Tecnológico](https://codigosatdev.com/#stack)
+- [Portafolio de Proyectos](https://codigosatdev.com/#portafolio)
+- [Contacto Directo](https://codigosatdev.com/#contacto)
+- [Sitemap XML](https://codigosatdev.com/sitemap.xml)
+- [Robots.txt](https://codigosatdev.com/robots.txt)
